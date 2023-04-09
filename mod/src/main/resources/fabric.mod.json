@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "ldd",
+	"version": "${version}",
+	"name": "ldd",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/ldd/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"lol.estrogen.ExampleMod"
+		],
+		"client": [
+			"lol.estrogen.ExampleModClient"
+		]
+	},
+	"mixins": [
+		"ldd.mixins.json",
+		{
+			"config": "ldd.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.14.19",
+		"minecraft": "~1.19.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
