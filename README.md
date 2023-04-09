@@ -1,5 +1,5 @@
 ## Background
-Various players have reported that the local difficulty is incorrectly calculated when playing on a multiplayer server. This is currently tracked on Mojang's Bug tracker as [MC-230732](https://bugs.mojang.com/browse/MC-230732) and [MC-197433](https://bugs.mojang.com/browse/MC-197433). This issue does not occur when playing on a singleplayer world.
+Players have reported that the local difficulty is incorrectly calculated when playing on a multiplayer server. This is currently tracked on Mojang's Bug tracker as [MC-230732](https://bugs.mojang.com/browse/MC-230732) and [MC-197433](https://bugs.mojang.com/browse/MC-197433). This issue does not occur when playing on a singleplayer world.
 
 ## Investigation
 The first thing that that was looked was the calculation used for the local difficulty. The method for this is located at `net.minecraft.world.LocalDifficulty.setLocalDifficulty`.
@@ -88,14 +88,17 @@ function setLocalDifficulty(
 After testing the method with various input parameters, nothing was found to be inherently wrong with it, so the next step was to look at the values that were being passed into the calculation. A custom fabric mod was written to add a command that would print the values that were being passed into the method, and the values that were being returned. The mod can be found [here](https://github.com/repository/Local-Difficulty-Bug/tree/main/mod).
 
 Testing with a frequently occupied chunk, a discrepancy can be observed between the local diffculty displaced in the F3 debug menu and the output of the command
+
 ![Debug menu showing local difficulty 3.38, while output from debug command shows 4.10](media/1.png)
 
 However, testing with a newly generated chunk, the values are the same.
+
 ![Local diffuclty values between debug menu and debug command agree](media/2.png)
 
 This led to the suspicion that on the client, the inhabited time used in the calculation was 0.
 
 To confirm this, the protocol was inspected. Specifically, the class at `net.minecraft.world.chunk.ProtoChunk` was looked at. It can be seen that the inhabited time is not sent over the network, and defaults to 0.
+
 ![Constructor for the ProtoChunk class, showing that the Chunk is initialized with an inhabited time of 0](media/protochunk.png)
 
 ## Conclusion
