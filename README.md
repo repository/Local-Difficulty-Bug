@@ -95,7 +95,7 @@ However, testing with a newly generated chunk, the values are the same.
 
 ![Local diffuclty values between debug menu and debug command agree](media/2.png)
 
-This led to the suspicion that on the client, the inhabited time used in the calculation was 0.
+This led to the suspicion that on the client, the inhabited time used in the calculation was 0. Incidentally, it was also found that the notion on the MC Wiki that the inhabited time increased at a faster rate with more players within it is false. After testing, it was determined that the inhabited time always increases at the same rate as long as at least one player is within the chunk.
 
 To confirm this, the protocol was inspected. Specifically, the class at `net.minecraft.world.chunk.ProtoChunk` was looked at. It can be seen that the inhabited time is not sent over the network, and defaults to 0.
 
