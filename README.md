@@ -85,7 +85,7 @@ function setLocalDifficulty(
 }
 ```
 
-After testing the method with various input parameters, nothing was found to be inherently wrong with it, so the next step was to look at the values that were being passed into the calculation. A custom fabric mod was written to add a command that would print the values that were being passed into the method, and the values that were being returned. The mod can be found [here](https://github.com/repository/Local-Difficulty-Bug/tree/master/mod).
+After testing the method with various input parameters, nothing was found to be inherently wrong with it, so the next step was to look at the values that were being passed into the calculation. A custom fabric mod was written to add a command that would print the values that were being passed into the method, and the values that were being returned. The mod can be found [here](https://github.com/repository/Local-Difficulty-Bug/tree/main/mod).
 
 Testing with a frequently occupied chunk, a discrepancy can be observed between the local diffculty displaced in the F3 debug menu and the output of the command
 ![image](https://t89.s3-us-west-1.amazonaws.com/2023/04/8wbyEcHq/javaw.png)
